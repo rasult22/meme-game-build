@@ -1,0 +1,111 @@
+
+victory.webp?webp_3f3569b1f3045b8fd8bec6f1d5e48076
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+!
+  rotate: true
+  xy: 903, 78
+  size: 48, 89
+  orig: 48, 89
+  offset: 0, 0
+  index: -1
+a
+  rotate: false
+  xy: 377, 31
+  size: 78, 95
+  orig: 78, 95
+  offset: 0, 0
+  index: -1
+b
+  rotate: false
+  xy: 837, 36
+  size: 64, 90
+  orig: 64, 90
+  offset: 0, 0
+  index: -1
+blastwave1
+  rotate: false
+  xy: 284, 35
+  size: 91, 91
+  orig: 91, 91
+  offset: 0, 0
+  index: -1
+d
+  rotate: false
+  xy: 541, 33
+  size: 75, 93
+  orig: 75, 93
+  offset: 0, 0
+  index: -1
+e
+  rotate: false
+  xy: 769, 35
+  size: 66, 91
+  orig: 66, 91
+  offset: 0, 0
+  index: -1
+glow2
+  rotate: true
+  xy: 206, 17
+  size: 109, 76
+  orig: 109, 76
+  offset: 0, 0
+  index: -1
+halo1
+  rotate: true
+  xy: 685, 43
+  size: 83, 82
+  orig: 83, 82
+  offset: 0, 0
+  index: -1
+o
+  rotate: false
+  xy: 457, 39
+  size: 82, 87
+  orig: 82, 87
+  offset: 0, 0
+  index: -1
+p
+  rotate: false
+  xy: 114, 24
+  size: 90, 102
+  orig: 90, 102
+  offset: 0, 0
+  index: -1
+shine3
+  rotate: false
+  xy: 457, 2
+  size: 35, 35
+  orig: 35, 35
+  offset: 0, 0
+  index: -1
+shine_rays
+  rotate: true
+  xy: 618, 21
+  size: 105, 65
+  orig: 105, 65
+  offset: 0, 0
+  index: -1
+star
+  rotate: false
+  xy: 284, 3
+  size: 27, 30
+  orig: 27, 30
+  offset: 0, 0
+  index: -1
+star1
+  rotate: false
+  xy: 2, 16
+  size: 110, 110
+  orig: 110, 110
+  offset: 0, 0
+  index: -1
+star2
+  rotate: false
+  xy: 685, 2
+  size: 40, 39
+  orig: 40, 39
+  offset: 0, 0
+  index: -1

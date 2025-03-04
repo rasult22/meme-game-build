@@ -1,0 +1,23 @@
+{
+  "frames": {
+    "out-of-time": {
+      "x": 0,
+      "y": 0,
+      "width": 448,
+      "height": 74,
+      "offsetX": 0,
+      "offsetY": 0,
+      "originalWidth": 448,
+      "originalHeight": 74
+    }
+  },
+  "meta": {
+    "format": 0,
+    "image": "ru_RU-out-of-time-sprite.png",
+    "scale": 1,
+    "size": {
+      "w": 448,
+      "h": 74
+    }
+  }
+}

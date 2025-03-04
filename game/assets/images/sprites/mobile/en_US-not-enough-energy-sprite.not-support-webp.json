@@ -1,0 +1,23 @@
+{
+  "frames": {
+    "not-enough-energy": {
+      "x": 0,
+      "y": 0,
+      "width": 489,
+      "height": 66,
+      "offsetX": 0,
+      "offsetY": 0,
+      "originalWidth": 489,
+      "originalHeight": 66
+    }
+  },
+  "meta": {
+    "format": 0,
+    "image": "en_US-not-enough-energy-sprite.png",
+    "scale": 1,
+    "size": {
+      "w": 489,
+      "h": 66
+    }
+  }
+}

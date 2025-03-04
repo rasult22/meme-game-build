@@ -1,0 +1,354 @@
+<!doctype html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="full-screen" content="yes"><meta name="screen-orientation" content="portrait"><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://memeblast.bizzon.io/game/config-mobile.js?b1ae45e150d2b5b6c4c45fdab2b91eb6"></script><script>var params = {
+            host: "https://meme.apps.zssl.info",
+            // host: "https://meme-server.local",
+            tgHost: "https://memeblast.bizzon.io/api",
+            // tgHost: "https://dev.memeblast.bizzon.io/api",
+            socialName: "tg",
+            locale: 'en_US',
+            context: {
+            },
+            glossary: {},
+            links: {
+                support: 'https://google.com',
+            },
+        };
+
+        params.time = Math.floor((+new Date()) / 1000);</script></head><body><script>var contentIsLoaded = false;
+
+['click', 'touchstart'].forEach(eventType => {
+  document.addEventListener(eventType, () => {
+    window.parent.postMessage({ type: 'IFRAME_CLICK' }, '*');
+  });
+});
+
+    function updateSession (postData) {
+        if (params.access_token) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('PUT', params.host + '/users/session' + '?access-token=' + params.access_token);
+            xhr.setRequestHeader('Content-type', 'application/json');
+            xhr.send(JSON.stringify(postData || {}));
+        }
+    }
+
+    function getLanguage () {
+            let language = 'ENG';
+
+            return language.slice(0, 2).toLowerCase();
+        }
+
+        function updateLoadingTips (...selectors) {
+            const language = getLanguage();
+
+            const phrases = {
+                en: ["Loading...", "Please, wait..."],
+                ru: ["Загрузка...", "Пожалуйста, подождите..."],
+                fr: ["Téléchargement...", "Attendez, s'il vous plaît..."],
+                es: ["Cargando...", "Por favor, espere..."],
+                pt: ["Carregando...", "Por favor, espere..."],
+                pl: ["Ładowanie...", "Proszę poczekaj..."],
+                it: ["Caricamento...", "Per favore aspetta..."],
+                de: ["Wird geladen...", "Bitte warten Sie..."],
+            }[language];
+
+            selectors.forEach((selector, i) => {
+                const element = document.querySelector(selector);
+                element && phrases[i] && (element.textContent = phrases[i]);
+            });
+        }
+
+    function loadJs (files) {
+        if (files.length) {
+            var $script = document.createElement('script');
+            var startTime = Date.now();
+            $script.type = 'text/javascript';
+            $script.src = files.shift();
+            $script.onload = function () {
+                loadJs(files);
+            };
+
+            $script.onerror = function () {
+                activateReloadView();
+
+                if (params.access_token) {
+                    var errorTime = Date.now();
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', params.host + '/log-message/add' + '?access-token=' + params.access_token);
+                    xhr.setRequestHeader('Content-type', 'application/json');
+                    xhr.send(JSON.stringify({code: 100, message: $script.src}));
+
+                    xhr = new XMLHttpRequest();
+                    xhr.open('POST', params.host + '/log-message/add' + '?access-token=' + params.access_token);
+                    xhr.setRequestHeader('Content-type', 'application/json');
+                    xhr.send(JSON.stringify({code: 101, message: "" + (errorTime - startTime)}));
+                }
+            };
+
+            document.body.appendChild($script);
+
+        } else {
+            // Загрузились все js файлы
+            updateSession({ bit: 1 });
+
+            contentIsLoaded = true;
+        }
+    }
+
+    /**
+     * Добавляемт текст ошибки загрузки js файлов с сылкой на перезагрузку страницы
+     */
+    function activateReloadView () {
+        // Скрываем лоадер
+        var loaderWrapper = document.body.querySelector('.loader-wrapper');
+        loaderWrapper.style.display = 'none';
+
+        // Пишем текст ошибки
+        var reloadText = document.body.querySelector('.reload-wrapper .text');
+        reloadText.innerHTML = params.glossary.preloader.errorLoadJS.text;
+
+        var reloadButton = document.body.querySelector('.reload-wrapper > button');
+        reloadButton.innerHTML = params.glossary.preloader.errorLoadJS.button;
+
+        // Показываем релоадер
+        var reloadWrapper = document.body.querySelector('.reload-wrapper');
+        reloadWrapper.style.display = 'flex';
+
+        // Навешиваем эвент на клик по релоадеру (он на весь экран)
+        reloadWrapper.addEventListener('click', function () {
+            // Меняем цвет бэкграунда и текст на "Перезагрузка...", чтобы пользователь понял что нажал
+            reloadWrapper.style.backgroundColor = '#becdda';
+            reloadText.innerHTML = params.glossary.preloader.errorLoadJS.reloadText;
+
+            // Запускаем перезагрузку
+            window.location.reload();
+        }, { once: true });
+    }
+
+    // Обновляем время сессии (время проведнное в приложении)
+    window._updateSessionInterval = setInterval(updateSession, 30000);
+
+    document.addEventListener('DOMContentLoaded', function () {
+        updateLoadingTips('#first-description-phrase', '#second-description-phrase');
+
+        // Загрузился пре-прелоадер, сервер отдал страницу, прогрузился весь текст страницы
+        updateSession({ bit: 0 });
+        var cocosLib = "https://memeblast.bizzon.io/game/cocos2d-js-v3.17-slog-min.js?b4a68e570908345fcc3ad8e6d22ce731";
+        var jsFiles = ["https://memeblast.bizzon.io/game/vendors~app.js?bd16f2d0d202dcbf0e15","https://memeblast.bizzon.io/game/app.js?a7d7d28036b8766d4583"];
+
+        loadJs([cocosLib].concat(jsFiles));
+    });</script><style>html, body {
+        margin: 0;
+    }
+
+    #preloader {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #ffffff;
+        z-index: 1000;
+    }
+
+    #preloader .loader-wrapper,
+    #preloader .reload-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    #preloader .loader {
+        color: #fc7972;
+        font-size: 20px;
+        width: 162px;
+        height: 162px;
+    }
+
+    #preloader .reload-wrapper .text {
+        flex: 0 0 100px;
+        padding: 26px 6px 0;
+        width: 100%;
+        text-align: center;
+        font-size: 26px;
+        line-height: 32px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #c78f48;
+    }
+
+    #preloader .reload-wrapper .text {
+        color: red;
+    }
+
+    #preloader .reload-wrapper {
+        display: none;
+        transition: all 5s;
+    }
+
+    #preloader .reload-icon {
+        position: relative;
+        width: 60px;
+        height: 60px;
+        border: 15px solid red;
+        border-right-color: transparent;
+        border-radius: 50%;
+        animation: reload-animation 0.5s linear infinite alternate;
+    }
+
+    #preloader .reload-wrapper > button {
+        width: 300px;
+        height: 150px;
+        font-size: 30px;
+    }
+
+    @-webkit-keyframes reload-animation {
+        from {
+            transform: rotateZ(-15deg);
+        }
+        to {
+            transform: rotateZ(0deg);
+        }
+    }
+
+    @keyframes reload-animation {
+        from {
+            transform: rotateZ(-15deg);
+        }
+        to {
+            transform: rotateZ(0deg);
+        }
+    }
+
+    #preloader .reload-icon:after,
+    #preloader .reload-icon:before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 0;
+        height: 0;
+        border: 35px solid transparent;
+        border-right: 0;
+    }
+
+    #preloader .reload-icon:after {
+        right: -12px;
+        top: -15px;
+        border-bottom-color: red;
+        border-top: 0;
+        border-right: 0;
+    }
+
+    .description {
+        margin-top: 35px;
+        text-align: center;
+        font-size: 26px;
+        font-family: SANS-SERIF;
+        color: #405a8b;
+        font-weight: bold;
+    }
+
+    .description div {
+        margin-top: 10px;
+    }
+
+    .loader_container {
+        position: relative;
+        width: 140px;
+        height: 140px;
+        margin: 0 auto;
+    }</style><style>@-moz-keyframes timer-loader {
+  0% {
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes timer-loader {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes timer-loader {
+  0% {
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+/* :not(:required) hides this rule from IE9 and below */
+.timer-loader:not(:required) {
+  border: 6px solid #405a8b;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  text-indent: -9999px;
+  width: 100px;
+  height: 100px;
+}
+.timer-loader:not(:required)::before {
+  -moz-animation: timer-loader 2.5s infinite linear;
+  -webkit-animation: timer-loader 2.5s infinite linear;
+  animation: timer-loader 2.5s infinite linear;
+  -moz-transform-origin: 3px 3px;
+  -ms-transform-origin: 3px 3px;
+  -webkit-transform-origin: 3px 3px;
+  transform-origin: 3px 3px;
+  background: #405a8b;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  content: '';
+  display: block;
+  position: absolute;
+  width: 6px;
+  height: 43.2px;
+  left: 41px;
+  top: 41px;
+}
+.timer-loader:not(:required)::after {
+  -moz-animation: timer-loader 30s infinite linear;
+  -webkit-animation: timer-loader 30s infinite linear;
+  animation: timer-loader 30s infinite linear;
+  -moz-transform-origin: 3px 3px;
+  -ms-transform-origin: 3px 3px;
+  -webkit-transform-origin: 3px 3px;
+  transform-origin: 3px 3px;
+  background: #405a8b;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  content: '';
+  display: block;
+  position: absolute;
+  width: 6px;
+  height: 32px;
+  left: 41px;
+  top: 41px;
+}
+
+ .loader_container {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+    }</style><div id="preloader"><div class="loader-wrapper"><div class="loader_container clock"><div class="timer-loader"></div></div><div class="description"><div id="first-description-phrase">Идёт загрузка...</div><div id="second-description-phrase">Пожалуйста, подождите!</div></div></div><div class="reload-wrapper"><div class="reload-icon"></div><div class="text"></div><button></button></div></div><div id="container" class="mobile"><canvas id="app"></canvas></div></body></html>

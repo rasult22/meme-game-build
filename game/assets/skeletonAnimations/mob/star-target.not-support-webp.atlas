@@ -1,0 +1,13 @@
+
+star-target.png?webp_c027987c57873ebd399eabb2ac889102
+size: 30,30
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Particle
+  rotate: false
+  xy: 0, 0
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
