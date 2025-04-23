@@ -1,8 +1,19 @@
-<!doctype html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="full-screen" content="yes"><meta name="screen-orientation" content="portrait"><script src="https://memeblast.bizzon.io/game/config-mobile.js?b1ae45e150d2b5b6c4c45fdab2b91eb6"></script><script>var params = {
-            locale: 'en_US',
+<!doctype html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="full-screen" content="yes"><meta name="screen-orientation" content="portrait"><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="./game/config-mobile.js?b1ae45e150d2b5b6c4c45fdab2b91eb6"></script><script>var params = {
+            host: "https://meme.apps.zssl.info",
+            tgHost: "https://dev.memeblast.bizzon.io/api",
+            socialName: "test",
             glossary: {},
-            links: {
-                support: 'https://google.com',
+            backUrl: "https://memeblast.bizzon.io",
+            locale: "en_US",
+            language: "ENG",
+            defaultLanguage: "ENG",
+            context: {
+                services: {
+                    player: "api",
+                    game: "api",
+                    level: "mock",
+                    person: "mock",
+                }
             },
         };
 
@@ -119,8 +130,8 @@
 
         // Загрузился пре-прелоадер, сервер отдал страницу, прогрузился весь текст страницы
         updateSession({ bit: 0 });
-        var cocosLib = "https://memeblast.bizzon.io/game/cocos2d-js-v3.17-slog-min.js?b4a68e570908345fcc3ad8e6d22ce731";
-        var jsFiles = ["https://memeblast.bizzon.io/game/vendors~app.js?bd16f2d0d202dcbf0e15","https://memeblast.bizzon.io/game/app.js?a7d7d28036b8766d4583"];
+        var cocosLib = "./game/cocos2d-js-v3.17-slog-min.js?b4a68e570908345fcc3ad8e6d22ce731";
+        var jsFiles = ["./game/vendors~app.js?8fc33cfb0990be1d8e3f","./game/app.js?8d366d4f4de2e2ecce97"];
 
         loadJs([cocosLib].concat(jsFiles));
     });</script><style>html, body {
